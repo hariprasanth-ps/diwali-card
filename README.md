@@ -5,7 +5,7 @@ An elegant, personalized Diwali greeting. Pure HTML, CSS and JavaScript — no b
 ## Structure
 ```
 diwali-card/
-├── Diwali.html          Page markup
+├── index.html          Page markup
 ├── css/styles.css      All styling (design tokens at the top)
 └── js/
     ├── effects.js      Embers + fireworks (canvas)
