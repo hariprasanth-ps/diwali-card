@@ -21,5 +21,5 @@ Push this folder to a repo → Settings → Pages → Deploy from `main` / root.
 
 ## Personalize
 Add names to the link:
-- `…/#Priya`
-- `…/#Priya-from-Arjun`
+- `…/#Hariprasanth`
+- `…/#Mano-from-Hariprasanth`
