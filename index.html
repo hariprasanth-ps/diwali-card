@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <title>Happy Diwali</title>
+  <meta name="description" content="A Diwali greeting, made with love.">
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,600;1,400;1,600&family=Jost:wght@300;400&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/styles.css">
+</head>
+<body>
+  <canvas id="fx" aria-hidden="true"></canvas>
+
+  <main class="stage">
+
+    <!-- Step 1: Intro -->
+    <section class="intro" id="intro">
+      <svg class="diya" id="bigDiya" viewBox="0 0 150 130" aria-hidden="true">
+        <defs>
+          <radialGradient id="h"><stop offset="0" stop-color="#ffd27a" stop-opacity=".55"/><stop offset="1" stop-color="#ffd27a" stop-opacity="0"/></radialGradient>
+          <linearGradient id="cl" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#e8c374"/><stop offset="1" stop-color="#8a5a1f"/></linearGradient>
+          <linearGradient id="fl" x1="0" y1="1" x2="0" y2="0"><stop offset="0" stop-color="#ff8a1f"/><stop offset=".6" stop-color="#ffc94d"/><stop offset="1" stop-color="#fff6d0"/></linearGradient>
+        </defs>
+        <circle class="halo" cx="75" cy="50" r="62" fill="url(#h)"/>
+        <path class="flame" d="M75 12 C88 30 92 42 75 58 C58 42 62 30 75 12Z" fill="url(#fl)"/>
+        <path d="M20 66 Q75 60 130 66 Q122 108 75 112 Q28 108 20 66Z" fill="url(#cl)"/>
+        <path d="M30 68 Q75 63 120 68" stroke="#fff3cf" stroke-opacity=".5" fill="none" stroke-width="2"/>
+        <rect x="60" y="112" width="30" height="8" rx="4" fill="#8a5a1f"/>
+      </svg>
+      <p>A little light, sent just for you.</p>
+      <button class="btn" id="lightBtn" type="button">LIGHT THE DIYA</button>
+    </section>
+
+    <!-- Step 2: Greeting card -->
+    <section class="card hidden" id="card">
+      <svg class="mini" viewBox="0 0 150 130" aria-hidden="true">
+        <path d="M75 12 C88 30 92 42 75 58 C58 42 62 30 75 12Z" fill="#ffc94d"/>
+        <path d="M20 66 Q75 60 130 66 Q122 108 75 112 Q28 108 20 66Z" fill="#e8c374"/>
+      </svg>
+
+      <div class="reveal" id="reveal">
+        <div>
+          <div class="small">THE FESTIVAL OF LIGHTS</div>
+          <h1>Happy Diwali</h1>
+          <div class="to" id="toName"></div>
+        </div>
+        <div class="rule">✦</div>
+        <div class="msg"><p>May this Diwali fill your home with warmth, your heart with peace, and your days with the kind of joy that lingers long after the lamps burn low.</p></div>
+        <div class="msg"><p>You bring light to the people around you. I hope the year ahead returns every bit of it, with beautiful smiles, quiet moments and plenty of love.</p></div>
+        <div class="sign" id="signOff">With warmest wishes</div>
+        <div class="actions">
+          <button class="btn ghost" id="celebrateBtn" type="button">Celebrate again</button>
+          <button class="btn ghost" id="makeBtn" type="button">Make one for someone</button>
+        </div>
+      </div>
+
+      <!-- Personalize & share -->
+      <div class="panel hidden" id="panel">
+        <label for="toInput">Their name</label>
+        <input id="toInput" maxlength="30" placeholder="e.g. Priya" autocomplete="off">
+        <label for="fromInput">Your name (optional)</label>
+        <input id="fromInput" maxlength="30" placeholder="e.g. Arjun" autocomplete="off">
+        <div class="link" id="linkText"></div>
+        <div class="row">
+          <button class="btn small-btn" id="copyBtn" type="button">COPY LINK</button>
+          <button class="btn ghost" id="shareBtn" type="button">Share</button>
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+  <div class="toast" id="toast" role="status"></div>
+
+  <script src="js/effects.js"></script>
+  <script src="js/personalize.js"></script>
+  <script src="js/main.js"></script>
+</body>
+</html>

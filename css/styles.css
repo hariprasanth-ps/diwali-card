@@ -1,0 +1,243 @@
+/* ==========================================================
+   Diwali Card — styles
+   1. Design tokens   2. Base   3. Intro   4. Card
+   5. Share panel     6. Utilities & motion
+   ========================================================== */
+
+/* 1. Design tokens ---------------------------------------- */
+:root {
+  --bg-deep: #0b0614;
+  --bg-mid: #1d0a2e;
+  --bg-warm: #3a0f2a;
+
+  --gold: #e8c374;
+  --gold-soft: #f6e3b4;
+  --rose: #f1b8c4;
+  --ink: #fbf1de;
+  --muted: #d9c7b0;
+
+  --glass: rgba(255, 248, 235, 0.06);
+  --line: rgba(232, 195, 116, 0.35);
+
+  --font-display: 'Cormorant Garamond', Georgia, serif;
+  --font-body: 'Jost', system-ui, sans-serif;
+
+  box-sizing: border-box;
+  padding-top: env(safe-area-inset-top, 0px);
+  padding-bottom: env(safe-area-inset-bottom, 0px);
+}
+
+/* 2. Base ------------------------------------------------- */
+* { margin: 0; padding: 0; box-sizing: border-box; }
+
+html { height: 100%; scroll-padding-top: env(safe-area-inset-top, 0px); }
+
+body {
+  min-height: 100%;
+  font-family: var(--font-body);
+  font-weight: 300;
+  color: var(--ink);
+  background:
+    radial-gradient(120% 90% at 50% 100%, var(--bg-warm) 0%, var(--bg-mid) 45%, var(--bg-deep) 100%)
+    var(--bg-deep);
+  overflow-x: hidden;
+}
+
+canvas {
+  position: fixed;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+}
+
+.stage {
+  position: relative;
+  z-index: 2;
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 28px 18px;
+}
+
+/* Buttons */
+.btn {
+  font-family: var(--font-body);
+  font-weight: 400;
+  letter-spacing: 0.12em;
+  font-size: 14px;
+  color: #2a1304;
+  background: linear-gradient(135deg, #f6e3b4, #e8c374 55%, #c99a45);
+  border: 0;
+  border-radius: 999px;
+  padding: 15px 34px;
+  margin-top: 30px;
+  cursor: pointer;
+  box-shadow: 0 8px 30px rgba(232, 195, 116, 0.28);
+  transition: transform 0.2s, box-shadow 0.2s;
+}
+.btn:hover { transform: translateY(-2px); box-shadow: 0 12px 36px rgba(232, 195, 116, 0.4); }
+.btn:disabled { opacity: 0.7; cursor: default; transform: none; }
+
+.btn.ghost {
+  background: transparent;
+  color: var(--gold-soft);
+  border: 1px solid var(--line);
+  box-shadow: none;
+  margin-top: 0;
+  padding: 12px 24px;
+}
+.btn.ghost:hover { background: var(--glass); }
+.btn.small-btn { margin-top: 0; padding: 12px 24px; }
+
+/* 3. Intro ------------------------------------------------ */
+.intro { text-align: center; max-width: 420px; }
+.intro p {
+  font-family: var(--font-display);
+  font-style: italic;
+  font-size: 22px;
+  color: var(--muted);
+  margin-top: 18px;
+}
+
+.diya { width: 150px; height: 130px; margin: 0 auto; display: block; overflow: visible; }
+
+.flame {
+  transform-origin: 75px 52px;
+  opacity: 0;
+  transform: scale(0.2);
+  transition: opacity 1s, transform 1.2s cubic-bezier(0.2, 0.9, 0.3, 1.3);
+}
+.halo { opacity: 0; transition: opacity 1.4s; }
+
+.lit .flame { opacity: 1; transform: scale(1); animation: flicker 2.4s ease-in-out infinite 1.2s; }
+.lit .halo  { opacity: 1; }
+
+@keyframes flicker {
+  0%, 100% { transform: scale(1) skewX(0); }
+  30%      { transform: scale(1.05, 0.96) skewX(2deg); }
+  60%      { transform: scale(0.97, 1.04) skewX(-2deg); }
+}
+
+/* 4. Card ------------------------------------------------- */
+.card {
+  position: relative;
+  width: 100%;
+  max-width: 460px;
+  text-align: center;
+  padding: 48px 32px 36px;
+  border-radius: 28px;
+  background: var(--glass);
+  border: 1px solid var(--line);
+  backdrop-filter: blur(14px);
+  -webkit-backdrop-filter: blur(14px);
+  box-shadow:
+    0 30px 80px rgba(0, 0, 0, 0.45),
+    inset 0 0 0 6px rgba(11, 6, 20, 0.35),
+    inset 0 0 0 7px rgba(232, 195, 116, 0.18);
+}
+
+.mini { width: 70px; margin: 0 auto 14px; display: block; }
+.small { font-size: 13px; letter-spacing: 0.2em; color: var(--gold); }
+
+h1 {
+  font-family: var(--font-display);
+  font-weight: 600;
+  font-size: clamp(44px, 12vw, 62px);
+  line-height: 1;
+  margin: 12px 0 6px;
+  background: linear-gradient(180deg, #fff3cf, #e8c374 70%, #b98a3c);
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+}
+
+.to {
+  font-family: var(--font-display);
+  font-style: italic;
+  font-size: 30px;
+  color: var(--rose);
+  margin: 14px 0 4px;
+}
+
+.rule {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 12px;
+  margin: 20px auto;
+  color: var(--gold);
+}
+.rule::before, .rule::after {
+  content: "";
+  height: 1px;
+  width: 64px;
+  background: linear-gradient(90deg, transparent, var(--gold));
+}
+.rule::after { transform: scaleX(-1); }
+
+.msg { font-family: var(--font-display); font-size: 21px; line-height: 1.7; color: var(--ink); }
+.msg p + p { margin-top: 14px; }
+
+.sign { margin-top: 26px; font-family: var(--font-display); font-style: italic; font-size: 22px; color: var(--gold-soft); }
+
+.actions { display: flex; gap: 10px; justify-content: center; flex-wrap: wrap; margin-top: 28px; }
+
+/* Staged reveal (runs once, when the card opens) */
+.reveal > * { opacity: 0; transform: translateY(14px); transition: opacity 0.9s, transform 0.9s; }
+.reveal.show > * { opacity: 1; transform: none; }
+.reveal.show > *:nth-child(1) { transition-delay: 0.1s; }
+.reveal.show > *:nth-child(2) { transition-delay: 0.4s; }
+.reveal.show > *:nth-child(3) { transition-delay: 0.8s; }
+.reveal.show > *:nth-child(4) { transition-delay: 1.2s; }
+.reveal.show > *:nth-child(5) { transition-delay: 1.7s; }
+.reveal.show > *:nth-child(6) { transition-delay: 2.2s; }
+
+/* 5. Share panel ------------------------------------------ */
+.panel {
+  margin-top: 22px;
+  padding: 20px;
+  border: 1px solid var(--line);
+  border-radius: 18px;
+  background: rgba(11, 6, 20, 0.55);
+  text-align: left;
+}
+.panel label { font-size: 13px; color: var(--muted); letter-spacing: 0.06em; }
+.panel input {
+  width: 100%;
+  margin: 8px 0 14px;
+  padding: 13px 16px;
+  border-radius: 12px;
+  border: 1px solid var(--line);
+  background: rgba(255, 255, 255, 0.06);
+  color: var(--ink);
+  font: 400 16px var(--font-body);
+  outline: none;
+}
+.panel input:focus { border-color: var(--gold); }
+.link { font-size: 12px; color: var(--gold-soft); word-break: break-all; margin-bottom: 14px; opacity: 0.85; }
+.row { display: flex; gap: 10px; flex-wrap: wrap; }
+
+.toast {
+  position: fixed;
+  left: 50%;
+  bottom: calc(24px + env(safe-area-inset-bottom, 0px));
+  transform: translate(-50%, 20px);
+  opacity: 0;
+  background: var(--gold);
+  color: #2a1304;
+  padding: 10px 20px;
+  border-radius: 999px;
+  font-size: 14px;
+  transition: 0.35s;
+  z-index: 5;
+}
+.toast.on { opacity: 1; transform: translate(-50%, 0); }
+
+/* 6. Utilities & motion ----------------------------------- */
+.hidden { display: none !important; }
+
+@media (prefers-reduced-motion: reduce) {
+  * { animation: none !important; transition-duration: 0.01s !important; }
+}
